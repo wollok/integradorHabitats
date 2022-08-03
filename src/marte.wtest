@@ -1,0 +1,36 @@
+import marte.*
+
+describe "test de marte"{ 
+	
+//	const habitatNumeroso = new Habitat(organismos = [new AnimalCorredor(especie = "hormiga", peso = 3),new Vegetal(especie = "diente de leon", edad = 5)])
+	const habitatNumeroso = new Habitat(organismos = [new Animal(especie = "hormiga", peso = 3,locomocion = nadar),new Vegetal(especie = "diente de leon", edad = 5)])
+//	const llanura = new Habitat(organismos = [new AnimalCorredor(especie = "hormiga", peso = 1, edad = 2)])
+	const llanura = new Habitat(organismos = [new Animal(especie = "hormiga", peso = 1, edad = 2,locomocion = correr)])
+	
+	method initialize(){
+		reserva.agregarHabitat(habitatNumeroso)
+		reserva.agregarHabitat(llanura)
+	}
+	
+	test "funcionando"{
+		assert.equals(reserva,reserva)
+	}
+	
+	test "el habitat mas poblado" {
+		
+		assert.equals(habitatNumeroso , reserva.habitatMasPoblado())
+	}
+	
+	test "biomasa Total" {
+		assert.equals(3 + 5 + 3,reserva.biomasaTotal())
+	}
+	
+		
+	test "una especie no esta en todos" {
+		assert.notThat(reserva.estaEnTodos("leon"))
+	}
+	test "una especie que esta en todos" {
+		assert.that(reserva.estaEnTodos("hormiga"))
+	}
+	
+}
